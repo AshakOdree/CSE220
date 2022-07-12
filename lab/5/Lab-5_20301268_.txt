@@ -1,0 +1,235 @@
+#----------------------------------Task-1.a--------------------------------
+def factorial(n):
+    if(n==0):
+        return 1
+    else:
+        return n*factorial(n-1)
+
+uSER = int(input("Enter a number:"))
+print(("Fectorial of this number is:"), factorial(uSER))
+
+
+#----------------------------------Task-1.b--------------------------------
+def fibonacci(n):
+    if(n<2):
+        return n
+    else:
+        return fibonacci(n-1)+fibonacci(n-2)
+
+uSER = int(input("Enter a number:"))
+print(("Fibonacci of this number is:"),fibonacci(uSER))
+
+
+#----------------------------------Task-1.c--------------------------------
+def pRiNtArrAy(lsT,idX=0):
+    tEmP= 0
+    if(idX==len(lsT)-1):
+        print(lsT[idX])
+    else:
+        print(lsT[idX],end=" ")
+        return pRiNtArrAy(lsT,idX+1)
+
+
+lIsT = input('Enter number with space: ').split()
+pRiNtArrAy(lIsT)
+
+
+#----------------------------------Task-1.d--------------------------------
+def powerN(base,power):
+    if power==0:
+        return 1
+    #3/2=
+    tEmP=powerN(base,int(power/2))
+    if power%2==0:
+        return tEmP*tEmP
+    elif power%2!=0:
+        return tEmP*tEmP*base
+bAsE = int(input("Base: "))
+poWeR = int (input("Power: "))
+print(powerN(bAsE,poWeR))
+
+
+#----------------------------------Task-2.a--------------------------------
+def binary(n):
+    if n==0:
+        return 0
+    else:
+        return n%2+10*binary(int(n/2))
+
+uSER = int(input("Enter a Decimal number: "))
+fInAL= binary(uSER)
+print(("Binary of this number is:"),fInAL)
+
+
+#----------------------------------Task-2.b--------------------------------
+#main code
+class Node:
+    def __init__(self, fIrsT, lAsT):
+        self.element = fIrsT 
+        self.next = lAsT
+
+class MyList:
+    def __init__ (self, nUM):
+        self.head=None
+        tail=None
+
+        for i in nUM:
+            tEmP=Node(i,None)
+            if self.head is None:
+                self.head=tEmP
+                tail=tEmP
+            else:
+                tail.next=tEmP
+                tail=tEmP
+        
+iNpUt=[10,20,30,40,50]
+lST=MyList(iNpUt)
+c_lST= (lST.head)
+#2.b
+def aDDeR(nN,i=0):
+    if nN==None:
+        i+=1
+        return 0
+    else:
+        return nN.element + aDDeR(nN.next)
+print(aDDeR(c_lST))
+
+
+#----------------------------------Task-2.C--------------------------------
+#main code
+class Node:
+    def __init__(self, fIrsT, lAsT):
+        self.element = fIrsT 
+        self.next = lAsT
+
+class MyList:
+    def __init__ (self, nUM):
+        self.head=None
+        tail=None
+
+        for i in nUM:
+            tEmP=Node(i,None)
+            if self.head is None:
+                self.head=tEmP
+                tail=tEmP
+            else:
+                tail.next=tEmP
+                tail=tEmP
+        
+iNpUt=[10,20,30,40,50]
+lST=MyList(iNpUt)
+
+#2.c
+def rEveRsE(nN,z=0):
+    if nN==None:
+        z+=1
+        return 
+    else:
+        rEveRsE(nN.next)
+        print(nN.element)
+
+rEveRsE(lST.head)
+
+
+#----------------------------------Task-3--------------------------------
+def hocBuilder(height):
+    if height==0:
+        return 0
+
+    if height==1:
+        return 8
+
+    else:
+        return hocBuilder(height-1) +5
+
+
+uSER = int(input("Enter cards number:"))
+print(("result"), hocBuilder(uSER))
+
+
+#----------------------------------Task-4.a--------------------------------
+def roW(n,tEmP=0):
+    if(n==tEmP):
+        return 0
+    elif n ==0:
+        return 0
+    else:
+        print(tEmP+1,end=" ")
+        return roW(n,tEmP+1)
+
+def colUmN(n,k=0):
+    if(n==k):
+        return 0
+
+    roW(k+1)
+    print()
+    colUmN(n,k+1)
+
+uSER = int(input("Enter line number:"))
+colUmN(uSER)
+
+
+#----------------------------------Task-4.b--------------------------------
+def spAcE(nN,z=0):
+    if(nN==z):
+        return 
+    elif nN==0:
+        return  0
+    else:
+        print(" ",end=" ")
+        return spAcE(nN,z+1)
+
+def roW(nUm,tEmP=0):
+    if(nUm==tEmP):
+        return 0
+    elif nUm ==0:
+        return 0
+    else:
+        print(tEmP+1,end=" ")
+        return roW(nUm,tEmP+1)
+
+def colUmN(nUM,k=0):
+    if(nUM==k):
+        return 0
+    spAcE(nUM-k)
+    roW(k+1)
+    print()
+    colUmN(nUM,k+1)
+
+uSER = int(input("Enter line number:"))
+colUmN(uSER)
+
+#----------------------------------Task-5--------------------------------
+class FinalQ:
+    def print(self,array,idx=0):
+        if(idx==len(array)):
+            return 0
+
+        if(idx>=0 and idx<=len(array)-1):
+            profit = self.calcProfit(array[idx])
+            print(f"{idx+1}. Investment: {array[idx]}; Profit: {profit}")
+            return self.print(array,idx+1)
+        else:
+            print("Please enter valid index.")
+            return
+
+    def calcProfit(self,investment):
+        coUNt= 0
+        if investment<=25000:
+            return 0
+
+        if 100000 >= investment > 25000:
+            return 45 + self.calcProfit(investment - 1000)
+
+        elif 100000 > investment<=101000:
+            return 8+self.calcProfit(investment-100)
+
+        else:
+            return 80+self.calcProfit(investment-1000)
+
+
+
+array=[25000,100000,250000,350000]
+f = FinalQ()
+f.print(array,0)
+

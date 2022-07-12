@@ -1,0 +1,287 @@
+#--------------------------------#Task-1-----------------------------------
+
+def shiftLeft(source,k):
+
+    i=len(source)-1 #pointer at the last index of source
+
+    while(i>=k):
+
+        source[i-k]=source[i]  #shifting elements k places to the right
+
+        i=i-1
+    i=len(source)-1
+
+    while(i>=k):
+
+        source[i]=0 #setting first k values to 0
+
+        i=i-1
+source=[10,20,30,40,50,60]
+
+shiftLeft(source,3)
+
+print(source)
+#--------------------------------#task-2----------------------------------
+
+def rotateLeft(source,start):
+    circular=[0]*len(source)
+
+    index=start
+
+    i=0
+
+    while(i<len(source)):
+
+        circular[i]=source[index]
+
+        index=(index+1)%len(source)#11%11=,12%11=1,13%11=2
+
+        i=i+1
+    return circular
+    
+
+source=[10,20,30,40,50,60] #creating a circular array with start 8 and size 5
+
+b=rotateLeft(source,3)
+print(b)
+#----------------------------------#task-3----------------------------------
+def remove(source,size,element):
+    i=len(source)-1 #pointer at the last index of source
+
+    while(i>=element):
+        if i==element:
+            break
+        else:
+            source[element]=source[element+1]
+            element= element+1
+
+    
+source=[10,20,30,40,50,0,0]
+remove(source,5,2)
+print(source)
+#-------------------------------#task-4-----------------------------------
+
+def removeAll(source,size,element):
+    liST = []
+    #loop start
+    nUm = 0
+    while nUm < (len(source)-1):
+        if (source[nUm] != element):
+            liST += [source[nUm]]
+        nUm+=1
+    #new loop start(for loop)
+    for j in range(len(liST),len(source)):
+        liST = liST+[0]
+    return liST
+source=[10,2,30,2,50,2,2,0,0]
+print(removeAll(source,7,2))
+#----------------------------#task-5----------------------------------
+def equalsum(source):
+  sAmE = 0
+  #loop start
+  nUm= 0
+  while nUm < (len(source)-1):
+    sUmM = 0
+    aDD = 0
+    #new loop start
+    nUm2 = 0
+    while nUm2 < nUm+2:
+      aDD+=array[nUm2]
+      nUm2+=1
+  
+    #for loop start
+    for  nUm3 in range(nUm+2,len(array)):
+        sUmM+=array[nUm3]
+  #if condition start
+    if sUmM==aDD:
+      sAmE+=1
+    else:
+      None
+    #if condition end
+    nUm+=1 
+  #printing condition start  
+  if sAmE==1:
+    print("True")
+  else:
+    print("False")
+    
+array = [10, 3, 1, 2, 10]  
+equalsum(array)
+#----------------------------#task-6----------------------------------
+def arraySeries(source):
+    iNdEx=0
+    aRRay = [0]*(source*source)
+    # loop start
+    nUm= 1
+    while nUm< source+1:
+        nEw = source-nUm
+        #new loop start
+        nUm1=0
+        while nUm1 < nEw:
+            aRRay[iNdEx] = 0
+            iNdEx = iNdEx+1
+            nUm1+=1
+       #for loop start
+        for y in range(source-nEw,0,-1):
+            aRRay[iNdEx] = y
+            iNdEx = iNdEx+1
+        #increassing first loop
+        nUm+=1
+
+    return aRRay
+
+uSeR = int(input())
+print(arraySeries(uSeR))
+#----------------------------#task-7----------------------------------
+def maxBunchCount(source):
+  toTaL = 0
+  nUm= 0
+  while nUm<len(source):
+      #start 0 to all
+    coUnT = 1 
+    for nUm in range(nUm,len(array)-1):
+    #access 0 to 6
+    
+      if array[nUm]==array[nUm+1]:
+        coUnT+=1
+      else:
+        break
+    #it will stop here
+    nUm+=1
+
+    if coUnT>toTaL:
+      toTaL = coUnT
+    else:
+      None
+  print(toTaL)
+array =  [1, 2, 2, 3, 4, 4, 4]
+maxBunchCount(array)
+#Input: [1,1,2, 2, 1, 1,1,1] 
+#----------------------------#task-8----------------------------------
+def repition(array):
+    tEmP = {}
+    nUm = 0
+    while nUm < len(array):
+        #access 0 to all
+        if array[nUm] not in tEmP:
+            #if array not in the dictonary
+            tEmP[array[nUm]] = 0
+        else:
+            None
+        tEmP[array[nUm]]= tEmP[array[nUm]]+1
+        #it will be add on the dictonary
+        nUm+=1
+    for nUm1 in tEmP.values():
+        #access all the value of the dictonary
+        coUnT = 0
+        for nUm2 in tEmP.values():
+            #counting it 
+            if nUm1>1 and nUm1==nUm2:
+                coUnT= coUnT+1
+        if coUnT>=2:
+            return True
+            #if it will find tow same 
+    if coUnT<2:
+        return False
+    
+print(repition([4,5,6,6,4,3,6,4]))
+#Input: {3,4,6,3,4,7,4,6,8,6,6} 
+-------------------------------#Circular Array-1----------------------------------
+def palindrome(source, start, size):
+    tEmP = size//2
+    coUnT = 0
+    rEsuLT = True
+    for i in range(tEmP): #acess all
+        if source[start] == source[(start+size-coUnT)%len(source)-1]:
+            #5%6=5
+            start += 1
+            size -= 1
+            coUnT += 1
+        else:
+            rEsuLT = False
+            #prnit('false')
+            break
+    return rEsuLT
+    #print('true')
+lis= [20,10,0,0,0,10,20,30] 
+#Input:[10,20,0,0,0,10,20,30]
+print(palindrome(lis,5,5))
+-------------------------------#Circular Array-2----------------------------------
+def coMMon(array1,array2,size_c,size_d,index_c,start2):
+    liST=[]
+    #looop start
+
+    coUnT=0
+    while (coUnT<size_c):
+        nEW=start2
+        aDD = 0
+        #new loop start
+        while (aDD<size_d):
+            if array2[nEW] is array1[index_c]:
+                liST+=[array2[nEW]]
+            else:
+                None
+
+            #increasing loop 
+            nEW=(nEW+1)%len(array2)
+            aDD+=1
+        
+        #increasing loop
+        index_c=(index_c+1)%len(array1)
+        coUnT+=1
+
+    return liST
+
+
+Circular_array_1 = [40,50,0,0,0,10,20,30]
+Circular_array_2 = [10,20,5,0,0,0,0,0,5,40,15,25]
+print(coMMon(Circular_array_1,Circular_array_2,5,7,5,8))
+-------------------------------#Circular Array-3----------------------------------
+import random
+def MusicalChair(sOurCE):
+    eND = 6
+    sIZe = 7
+    iK=0
+    #loop start
+    while True:
+        tEmp1 = sOurCE[eND]
+        #new loop start
+        coUNT=0
+        j = 0
+        while(coUNT<sIZe-1):
+            sOurCE[eND] = sOurCE[eND-1]
+            eND-=1
+            #condition star
+            if eND<0:
+                eND = len(sOurCE)-1
+            else:
+                None
+
+            coUNT+=1
+        #new loop end
+        sOurCE[0] = tEmp1
+        eND = sIZe-1
+        n = random.randint(0, 3)
+    #loop end
+        #condition start
+        if n==1:
+            sOurCE.pop(sIZe//2)
+            sIZe-=1
+            eND =sIZe-1
+            #new condition
+            if len(sOurCE)==1:
+                print(sOurCE[0])
+                break
+            else:
+                x=0
+                while (x<len(sOurCE)):
+                # for x in range(len(arr)):
+                    print(sOurCE[x],end=" ")
+                    x+=1
+                print()
+            #end
+        else:
+            None
+aRRay = [1,2,3,4,5,6,7]
+MusicalChair(aRRay)
+

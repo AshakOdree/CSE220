@@ -1,0 +1,98 @@
+#----------------------------Task-1-------------------------------------
+
+class KeyIndex:
+    lST=[]
+    coUnT=0
+#-------------Min and Max --------------------------------
+    def __init__(self,a):
+        max=a[0]
+        self.mINn=a[0]
+        self.fIrST = None
+        self.lAsT = None
+
+        for i in a:
+            if i>max:
+                max=i
+            elif i<self.mINn:
+                self.mINn=i
+            else:
+                pass
+        self.k=[0]*(max-self.mINn+1)
+
+        for i in a:
+            idX=i-self.mINn
+            if self.k[idX]==0:
+                self.k[idX]=1
+            else:
+                self.k[idX]+=1
+
+#-----------------srarch--------------------------------
+
+    def search(self,nUM):
+       if self.mINn>0: 
+           # plas er condition
+           if nUM>=len(self.k) or nUM<0: 
+               return False
+           elif self.k[nUM]!=0: 
+               return True
+           else:
+                return False
+       else:
+           #minus er cindition
+           nUM= nUM+self.mINn*(-1)
+           if nUM>=len(self.k) or nUM<0: 
+               return False
+           elif self.k[nUM]!=0: 
+               return True
+           else: 
+               return False    
+
+#----------------Sorting --------------------------------
+    def sort(self):
+        tEmP=0
+        for k in range(len(self.k)):
+            for j in range(self.k[k]):
+                a[tEmP]=k+self.mINn
+                self.k[k]-=1
+                tEmP+=1
+
+#--------------Code_tester --------------------------------
+a=[5,1,9 ,4,0, -7, -2, 8, 9,4,998,-555,50,60,-133]
+c=KeyIndex(a)
+print(c.search(-2))
+c.sort()
+print(a)
+
+
+#--------------------------Task-02--------------------------------------------
+
+
+def hasHFuncTion(aRRay):
+
+    lEngTH = len(aRRay)
+    emT_liST = [0]*lEngTH
+    #value=['A','E','I','O','U']
+    for i in aRRay:
+        ToTal_Sum = 0
+        coNsoNanT = 0
+        for idX in i:
+            if idX>='A' and idX<='Z' and idX!='A' and idX!='E' and idX!='I' and idX!='O' and idX!='U':
+                coNsoNanT+=1
+            elif idX>='0' and idX<='9':
+                ToTal_Sum+=int(idX)
+
+        tEmP = (coNsoNanT*24+ToTal_Sum)%9
+
+        if emT_liST[tEmP]==0:
+            emT_liST[tEmP] = i
+        else:
+            while emT_liST[tEmP]!=0:
+                tEmP = (tEmP+1)%lEngTH
+            emT_liST[tEmP] = i
+            
+    return emT_liST
+
+uSeR=['ABC124','CBA124','DEF456','GHIJ789','HGW654','ZYZ987','WEP274','OUY982','LZA111']
+print(hasHFuncTion(uSeR))
+
+

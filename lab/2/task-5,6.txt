@@ -1,0 +1,49 @@
+   def insert(self,newElement):
+        n = self.head
+        while n.next is not None:
+            if n.value==newElement:
+                print("The key already exists")
+                return
+            n = n.next
+        if n.value == newElement:
+            print("The key already exists")
+            return
+        tempNode = Node(newElement)
+        n.next = tempNode
+
+
+    def insert_at_index(self, newElement, index):
+        cnt = 0
+        i = 1
+        n = self.head
+        tempNode = Node(newElement)
+
+        while n.next is not None:
+            n = n.next
+            cnt += 1
+
+        if index < 0 or index > cnt:
+            print("Invalid Index!")
+            return
+
+        n = self.head
+        if index <= cnt:
+            while n is not None:
+                if n.value == newElement:
+                    print("The key already exists")
+                    return
+                n = n.next
+
+        if index == 0:
+            tempNode.next = self.head
+            self.head = tempNode
+            return
+
+        n = self.head
+        while n.next is not None:
+            if i == index:
+                tempNode.next = n.next
+                n.next = tempNode
+                return
+            n = n.next
+            i += 1

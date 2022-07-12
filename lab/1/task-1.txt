@@ -1,0 +1,182 @@
+--------------------------------#Task-1-----------------------------------
+
+def rightShift(source,k):
+
+    i=len(source)-1 #pointer at the last index of source
+
+    while(i>=k):
+
+        source[i-k]=source[i]  #shifting elements k places to the right
+
+        i=i-1
+    i=len(source)-1
+
+    while(i>=k):
+
+        source[i]=0 #setting first k values to 0
+
+        i=i-1
+a=[10,20,30,40,50,60]
+
+rightShift(a,3)
+
+print(a)
+
+--------------------------------#task-2----------------------------------
+
+def printForward(c,start,size):
+    circular=[0]*len(c)
+
+    index=start
+
+    i=0
+
+    while(i<size):
+
+        circular[i]=c[index]
+
+        index=(index+1)%len(c)#11%11=,12%11=1,13%11=2
+
+        i=i+1
+    return circular
+    
+
+circularArray=[10,20,30,40,50,60] #creating a circular array with start 8 and size 5
+
+b=printForward(circularArray,3,6)
+print(b)
+
+----------------------------------#task-3----------------------------------
+def remove(source,size,element):
+    i=len(source)-1 #pointer at the last index of source
+
+    while(i>=element):
+        if i==element:
+            break
+        else:
+            source[element]=source[element+1]
+            element= element+1
+
+    
+source=[10,20,30,40,50,0,0]
+remove(source,5,2)
+print(source)
+
+-------------------------------#task-4-----------------------------------
+
+def removeAll(source,size,element):
+    lst = []
+    for numx in range(0,len(source) - 1):
+        if (source[numx] != element):
+            lst += [source[numx]]
+    for j in range(len(lst),len(source)):
+        lst = lst+[0]
+    return lst
+source=[10,2,30,2,50,2,2,0,0]
+print(removeAll(source,7,2))
+
+----------------------------#task-5----------------------------------
+def equalsum(source):
+  similarity = 0
+  i= 0
+  while i < (len(source)-1):
+    summ = 0
+    add = 0
+    
+    for j in range(0,i+2):
+      add+=array[j]
+  
+    
+    for  k in range(i+2,len(array)):
+        summ+=array[k]
+  
+    if summ==add:
+      similarity+=1
+
+    i+=1 
+    
+  if similarity==1:
+    print("True")
+  else:
+    print("False")
+array = [1, 1, 1, 2, 1]  
+equalsum(array)
+
+----------------------------#task-6----------------------------------
+def arraySeries(n):
+    index=0
+    array = [0]*(n*n)
+    i= 1
+    while i< n+1:
+        diff = n-i
+        for x in range(diff):
+            array[index] = 0
+            index = index+1
+        for y in range(n-diff,0,-1):
+            array[index] = y
+            index = index+1
+        i+=1
+    return array
+n = int(input())
+print(arraySeries(n))
+----------------------------#task-7----------------------------------
+def maxBunchCount(source):
+  total = 0
+  i= 0
+  while i<len(source):
+    count = 1 
+    for i in range(i,len(array)-1):
+    
+      if array[i]==array[i+1]:
+        count+=1
+      else:
+        break
+    i+=1
+
+    if count>total:
+      total = count
+  print(total)
+array =  [1, 2, 2, 3, 4, 4, 4]
+maxBunchCount(array)
+
+----------------------------#task-8----------------------------------
+def repition(array):
+    temp = {}
+    i= 0
+    while i < len(array):
+        if array[i] not in temp:
+            temp[array[i]] = 0
+        temp[array[i]]= temp[array[i]]+1
+        i+=1
+    for j in temp.values():
+        count = 0
+        for k in temp.values():
+            if j>1 and j==k:
+                count= count+1
+        if count>=2:
+            return True
+    if count<2:
+        return False
+    
+print(repition([4,5,6,6,4,3,6,4]))
+----------------------------#Circular Array-1----------------------------------
+def palindrome(source, start, size):
+    temp = size//2
+    count = 0
+    result = True
+    for i in range(temp):
+        if source[start] == source[(start+size-count)%len(source)-1]:
+            start += 1
+            size -= 1
+            count += 1
+        else:
+            result = False
+            break
+    return result
+lis= [20,10,0,0,0,10,20,30] 
+print(palindrome(lis,5,5))
+
+----------------------------#Circular Array-2----------------------------------
+----------------------------#Circular Array-3----------------------------------
+
+

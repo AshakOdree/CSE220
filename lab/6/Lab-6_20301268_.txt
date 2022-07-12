@@ -1,0 +1,245 @@
+#------------------------------Task-1---------------------------------------
+def mIdIndEx( nUM , sTaRt_iDx , laST_iDx ):
+
+    #start
+    if sTaRt_iDx == laST_iDx:
+        return sTaRt_iDx
+
+    #devider
+    mIDD = mIdIndEx(nUM, sTaRt_iDx + 1, laST_iDx)
+    if (nUM[sTaRt_iDx] > nUM[mIDD]):
+        return mIDD
+    return sTaRt_iDx
+
+def seLecTionSoRt(nN, n, index = 0):
+
+    #count=None
+    if index == n:
+        return -1
+
+    #if found
+    miD_vAl = mIdIndEx(nN, index, n-1)
+    if miD_vAl != index:
+        nN[miD_vAl], nN[index] = nN[index], nN[miD_vAl]
+    seLecTionSoRt(nN, n, index + 1)
+
+#code tester
+aRRaY = [420,69,99,100,6,220,5,9,8,1,10,2]
+a=0
+lEnn = len(aRRaY)
+seLecTionSoRt(aRRaY, lEnn)
+print(aRRaY)
+ 
+
+#------------------------------Task-2---------------------------------------
+def fiRsT(nUM,fST_IdX):
+    if(fST_IdX==0):
+        return nUM
+
+    if (nUM[fST_IdX]<nUM[fST_IdX-1]):
+        nUM[fST_IdX] ,nUM[fST_IdX-1] = nUM[fST_IdX-1], nUM[fST_IdX]
+    else:
+        pass
+
+    return fiRsT(nUM,fST_IdX-1)
+
+
+def inserTion_sorT(nUm,fST_IdX):
+    if(fST_IdX==len(nUm)):
+        return nUm
+
+    nUm = fiRsT(nUm,fST_IdX)
+
+    return inserTion_sorT(nUm,fST_IdX+1)
+
+aRRaY = [10,9,8,50,6,5,4,3,2,1,588,65,111,30]
+print(inserTion_sorT(aRRaY,0))
+#print(shiftInsert(arr,0))
+#print(eXtRa(arr,0))
+print()
+
+
+#------------------------------Task-3---------------------------------------
+class Node:
+    def __init__(self,fiRsT,laST=None):
+        self.eLEm = fiRsT
+        self.nxT = laST
+class lInKEDLiSt:
+    def __init__(self,nUM):
+        self.head = None
+        self.tail = None
+        for i in nUM:
+            tEM1 = Node(i)
+            if self.head is None:
+                self.head = tEM1
+                self.tail = self.head
+            else:
+                self.tail.nxT = tEM1
+                self.tail = tEM1
+    #bubble sourt main condition
+    def bubble_sort(self):
+        coUNt=0
+        tEmP = None
+        while tEmP != self.head.nxT:
+            nEW = self.head
+            while nEW.nxT is not tEmP:
+                nEW1 = nEW.nxT
+                if nEW.eLEm > nEW1.eLEm :
+                    nEW.eLEm, nEW1.eLEm  = nEW1.eLEm , nEW.eLEm
+                nEW = nEW.nxT
+            tEmP = nEW
+        coUNt+=1
+#printing conditon
+        if self.head==None:
+            print("EmptyList")
+        else:
+            pR = self.head
+            while pR is not None:
+                print(pR.eLEm, end=" ")
+                pR = pR.nxT
+
+
+#------------------------------Task-4---------------------------------------
+#selection sort
+    def selection_sort(self):
+        cOUnT_s=0
+        tEmP_S = self.head
+        while tEmP_S.nxT is not None:
+            nN_S = tEmP_S.nxT
+            mIn_NoDe = tEmP_S
+            while nN_S is not None:
+                if nN_S.eLEm <mIn_NoDe.eLEm:
+                    mIn_NoDe = nN_S
+                nN_S = nN_S.nxT
+            temp = mIn_NoDe.eLEm
+            mIn_NoDe.eLEm = tEmP_S.eLEm
+            tEmP_S.eLEm = temp
+            tEmP_S = tEmP_S.nxT
+        cOUnT_s+=1
+#print conditon
+        if self.head==None:
+            print("EmptyList")
+        else:
+            nN_S = self.head
+            while nN_S is not None:
+                print(nN_S.eLEm,end=" ")
+                nN_S = nN_S.nxT
+#code tester
+aA = [420,69,99,100,2,6,220,255,1,65,80]
+print("Task-3")
+bB=lInKEDLiSt(aA)
+bB.bubble_sort()
+print()
+print()
+print("Task-4")
+bB.selection_sort()
+print()
+
+
+
+#------------------------------Task-5---------------------------------------
+
+class Node:
+    def __init__(self,uSeR,pReV=None,nXT=None):
+        self.value = uSeR
+        self.prev = pReV
+        self.next = nXT
+
+class douBly_LinKedLisT:
+    def __init__(self,a):
+        self.head = self.tail = None
+        for i in a:
+            neW_NoDe = Node(i)
+            if self.head is None:
+                self.head = neW_NoDe
+                self.tail = self.head
+            else:
+                self.tail.next = neW_NoDe
+                neW_NoDe.prev = self.tail
+                self.tail = neW_NoDe
+
+#main code
+def inserTion_sorT(lst):
+    coNteR=0
+    tEmP = lst.head.next
+    while tEmP is not None:
+        pRW = tEmP.prev
+        mAiN_vAl = tEmP.value
+
+        while pRW.prev is not None:
+            if pRW.value>mAiN_vAl:
+                pRW.next.value = pRW.value
+            else:
+                pRW.next.value = mAiN_vAl
+                break
+            pRW = pRW.prev
+
+        if pRW.prev is None:
+            if pRW.value>mAiN_vAl:
+                pRW.next.value , pRW.value = pRW.value , mAiN_vAl
+            else:
+                pRW.next.value = mAiN_vAl
+
+        tEmP = tEmP.next
+    coNteR+=1
+#printing condition
+    if lst.head==None:
+            print("EmptyList")
+    else:
+        n = lst.head
+        while n is not None:
+            print(n.value,end=" ")
+            n = n.next
+
+#code tester
+aRRay = [5,4,3,2,1,20,54,6,800,55555,11,80]
+nN = douBly_LinKedLisT(aRRay)
+inserTion_sorT(nN)
+print()
+
+
+#------------------------------Task-6---------------------------------------
+def binary_search(a,fIrST,lAsT,uSEr):
+    #chack
+    if fIrST <= lAsT:
+        #empty
+        if(len(a)==0):
+            return "Not Found!"
+        #devide
+        midIdx = int((fIrST+lAsT)/2)
+        if(fIrST==lAsT and a[fIrST]!=uSEr):
+            return "Not found!"
+
+        elif(uSEr==a[midIdx]):
+            return f"Your number {uSEr} is at index {midIdx}"
+        elif(uSEr<a[midIdx]):
+            return binary_search(a,fIrST,midIdx-1,uSEr)
+        else:
+            return binary_search(a,midIdx+1,lAsT,uSEr)
+    else:
+        return -1111
+    
+
+#code tester
+aRRaY = [1,3,5,7,9,13]
+fST = 0
+lsT = len(aRRaY)-1
+user=int(input("Enter a number form the list: "))
+print(binary_search(aRRaY,fST,lsT,user))
+
+
+#------------------------------Task-7---------------------------------------
+emT_lST = [0]*9999999
+def fiBonAcCi(nUM):
+
+  if nUM <= 1:
+    return nUM
+  elif emT_lST[nUM] != 0:
+    return emT_lST[nUM]
+  else:
+    emT_lST[nUM] = fiBonAcCi(nUM - 1) + fiBonAcCi(nUM - 2)
+    return emT_lST[nUM]
+
+uSeR = int(input("Enter a number: "))
+aA=fiBonAcCi(uSeR)
+print(("Answer is:"), aA)
